@@ -3,6 +3,7 @@ package com.shop.manager;
 import com.shop.model.Order;
 import com.shop.model.Product;
 
+import javax.swing.*;
 import java.util.Arrays;
 import java.util.Objects;
 
@@ -129,4 +130,30 @@ public class ShopManager {
         orders[orderCount] = order;
         System.out.println("결제 완료");
     }
+
+    public Order findOrderById(String orderId) {
+        // 반복문으로 orders 배열 순회
+        for (int i = 0; i < orderCount; i++) {
+            // orderId가 일치하면 반환
+            // 못 찾으면 null 반환
+            if (orderId.equals(orders[i].getOrderId())) {
+                return orders[i];
+            }
+        }
+        return null;
+    }
+
+    public void printAllOrders() {
+        // 반복문으로 모든 주문 출력
+
+        for (int i = 0; i < orderCount; i++) {
+            Order order = orders[i];
+            System.out.println((i+1) + ". [" + order.getOrderId() + "] " + order.getTotalAmount() + "원 (" + order.getStatus() + ")");
+        }
+        // 형식: "번호. [주문ID] 총금액원 (상태)"
+        // 예시: System.out.println((i+1) + ". [" + order.getOrderId() + "] " + order.getTotalAmount() + "원 (" + order.getStatus() + ")");
+    }
+
+
+
 }

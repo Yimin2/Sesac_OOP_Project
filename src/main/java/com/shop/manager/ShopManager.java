@@ -82,28 +82,51 @@ public class ShopManager {
 
     public void addOrderItem(Order order, String productId, int quantity) {
 
-// findProductById()로 상품 찾기
-//        findProductById(productId);
+        // findProductById()로 상품 찾기
+        //        findProductById(productId);
 
-// 상품이 없으면 에러 메시지 출력 후 return
+        // 상품이 없으면 에러 메시지 출력 후 return
         if (findProductById(productId) == null) {
             System.out.println("상품이 없습니다");
             return;
         }
-// isAvailable()로 재고 확인
+        // isAvailable()로 재고 확인
         findProductById(productId).isAvailable(quantity);
 
-// 재고 부족시 에러 메시지 출력 후 return
+        // 재고 부족시 에러 메시지 출력 후 return
         if (!findProductById(productId).isAvailable(quantity)) {
             System.out.println("재고가 부족합니다");
             return;
         }
-// order.addItem() 호출
+        // order.addItem() 호출
         order.addItem(productId, quantity);
 
-// 추가 완료 메시지 출력
+        // 추가 완료 메시지 출력
         System.out.println("상품 추가 완료");
     }
 
+    public void processOrder(Order order) {
+        order.calculateTotal(this);
+        System.out.println("==== 주문 내역 ====");
+        System.out.println("주문 ID: " + order.getOrderId());
+        System.out.println("------------------");
+        String[] productIds = order.getProductIds();
+        int[] quantities = order.getQuantities();
 
+        for (int i = 0; i < order.getItemCount(); i++) {
+            Product product = findProductById(productIds[i]);
+            if (product != null) {
+                int itemTotal = product.getPrice() * quantities[i];
+                System.out.println((i + 1) + ". " + product.getName() + " - 수량: " + quantities[i] + "개" + " / 금액: " + itemTotal + "원");
+                System.out.println(product.getStock());
+                product.decreaseStock(quantities[i]);
+                System.out.println(product.getStock());
+            }
+        }
+        System.out.println("------------------");
+        System.out.println("총 금액: " + order.getTotalAmount() + "원");
+        System.out.println("==================");
+        orders[orderCount] = order;
+        System.out.println("결제 완료");
+    }
 }

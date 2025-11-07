@@ -32,12 +32,12 @@ public class Order {
     public void calculateTotal(ShopManager manager) {
         this.totalAmount = 0;
 
-        for (int i = 0; i < productIds.length; i++) {
-            String id = Integer.toString(i);
-            Product product = manager.findProductById(id);
-            totalAmount += product.getPrice() * quantities[i];
+        for (int i = 0; i < itemCount; i++) {
+            Product product = manager.findProductById(productIds[i]);
+            if (product != null) {
+                totalAmount += product.getPrice() * quantities[i];
+            }
         }
-
     }
 
     public void complete() {

@@ -14,8 +14,8 @@ public class Product {
     //  재고가 충분한지 확인 (stock < quantity면 예외 발생)
     //stock -= quantity
     public void decreaseStock(int quantity) {
-        if (stock > 0) {
-            if (stock < quantity) throw new IllegalArgumentException("재고가 부족합니다.");
+        if (quantity <= 0 || stock < quantity) {
+            throw new IllegalArgumentException("재고가 부족합니다.");
         }
         stock -= quantity;
     }

@@ -48,36 +48,62 @@ public class ShopManager {
         return Arrays.copyOf(searchProduct, count);
     }
 
-//    public Product[] searchProductsByCategory(String category) {
-//        int count = 0;
-//
-//        Product[] searchProduct = new Product[productCount];
-//        for (Product product : products) {
-//            if (product.getCategory().toLowerCase().contains(category.toLowerCase())) {
-//
-//                searchProduct[count++] = product;
-//            }
-//        }
-//        return searchProduct;
-//    }
-public Product[] searchProductsByCategory(String category) {
-    int count = 0;
-    Product[] searchProduct = new Product[productCount];
+    public Product[] searchProductsByCategory(String category) {
+        int count = 0;
+        Product[] searchProduct = new Product[productCount];
 
-    for (int i = 0; i < productCount; i++) {  // ✅ productCount까지만 순회
-        Product product = products[i];
-        if (product.getCategory().toLowerCase().contains(category.toLowerCase())) {
-            searchProduct[count++] = product;
+        for (int i = 0; i < productCount; i++) {  // ✅ productCount까지만 순회
+            Product product = products[i];
+            if (product.getCategory().toLowerCase().contains(category.toLowerCase())) {
+                searchProduct[count++] = product;
+            }
         }
+
+        // ✅ 실제 검색된 개수만큼의 배열만 반환
+        return Arrays.copyOf(searchProduct, count);
     }
 
-    // ✅ 실제 검색된 개수만큼의 배열만 반환
-    return Arrays.copyOf(searchProduct, count);
-}
     public void printAllProducts() {
         for (int i = 0; i < productCount; i++) {
             Product p = products[i];
-            System.out.println((i+1) + ". [" + p.getId() + "] " + p.getName() + " - " + p.getPrice() + "원 (재고: " + p.getStock() + "개)");
+            System.out.println((i + 1) + ". [" + p.getId() + "] " + p.getName() + " - " + p.getPrice() + "원 (재고: " + p.getStock() + "개)");
         }
     }
+
+
+    public Order createOrder() {
+        //    새 Order 객체 생성
+        Order order = new Order();
+        //    생성 메시지 출력
+        System.out.println("Oreder 객체 생성");
+        //    Order 반환
+        return order;
+    }
+
+    public void addOrderItem(Order order, String productId, int quantity) {
+
+// findProductById()로 상품 찾기
+//        findProductById(productId);
+
+// 상품이 없으면 에러 메시지 출력 후 return
+        if (findProductById(productId) == null) {
+            System.out.println("상품이 없습니다");
+            return;
+        }
+// isAvailable()로 재고 확인
+        findProductById(productId).isAvailable(quantity);
+
+// 재고 부족시 에러 메시지 출력 후 return
+        if (!findProductById(productId).isAvailable(quantity)) {
+            System.out.println("재고가 부족합니다");
+            return;
+        }
+// order.addItem() 호출
+        order.addItem(productId, quantity);
+
+// 추가 완료 메시지 출력
+        System.out.println("상품 추가 완료");
+    }
+
+
 }

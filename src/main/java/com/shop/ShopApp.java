@@ -7,23 +7,23 @@ import com.shop.utils.IdGenerator;
 public class ShopApp {
 
 
-  public static void main(String[] args) {
-    // 4가지 시나리오 실행
-    ShopManager shopManager = new ShopManager();
-    //1. 초기 데이터 설정
-    System.out.println(">>> 시나리오 1: 초기 데이터 설정\n");
+    public static void main(String[] args) {
+        // 4가지 시나리오 실행
+        ShopManager shopManager = new ShopManager();
+        //1. 초기 데이터 설정
+        System.out.println(">>> 시나리오 1: 초기 데이터 설정\n");
 
 // 상품 3-4개 생성
-    Product product1 = new Product("노트북", 1500000, 5, "전자기기");
-    Product product2 = new Product("마우스", 30000, 20, "전자기기");
-    Product product3 = new Product("Java책", 35000, 10, "도서");
-    Product product4 = new Product("키보드", 80000, 15, "전자기기");
+        Product product1 = new Product("노트북", 1500000, 5, "전자기기");
+        Product product2 = new Product("마우스", 30000, 20, "전자기기");
+        Product product3 = new Product("Java책", 35000, 10, "도서");
+        Product product4 = new Product("키보드", 80000, 15, "전자기기");
 
 // 매니저에 등록
-    shopManager.addProduct(product1);
-    ShopManager.addProduct(product2);
-    ShopManager.addProduct(product3);
-    ShopManager.addProduct(product4);
+        shopManager.addProduct(product1);
+        shopManager.addProduct(product2);
+        shopManager.addProduct(product3);
+        shopManager.addProduct(product4);
 
 //    >>> 시나리오 1: 초기 데이터 설정
 //
@@ -31,7 +31,7 @@ public class ShopApp {
 //        [상품 등록] 마우스 - 30000원
 //        [상품 등록] Java책 - 35000원
 //        [상품 등록] 키보드 - 80000원
-    //2. 상품 조회
+        //2. 상품 조회
 
 //    === 전체 상품 목록 ===
 //        1. [P1] 노트북 - 1500000원 (재고: 5개)
@@ -43,7 +43,7 @@ public class ShopApp {
 //    1. 노트북 - 1500000원
 //    2. 마우스 - 30000원
 //    3. 키보드 - 80000원
-    //3. 주문 생성 및 처리
+        //3. 주문 생성 및 처리
 
 
 //    >>> 시나리오 3: 주문 생성 및 처리
@@ -64,7 +64,7 @@ public class ShopApp {
 //    총 금액: 1640000원
 //
 //        [결제 완료] O1
-    //4. 전체 조회
+        //4. 전체 조회
 
 
 //    >>> 시나리오 4: 전체 조회
@@ -78,6 +78,6 @@ public class ShopApp {
 //    2. [P2] 마우스 - 30000원 (재고: 18개)
 //    3. [P3] Java책 - 35000원 (재고: 10개)
 //    4. [P4] 키보드 - 80000원 (재고: 14개)
-    shopManager.findProductById();
-  }
+        shopManager.findProductById();
+    }
 }

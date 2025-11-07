@@ -25,6 +25,19 @@ public class ShopApp {
         shopManager.addProduct(product3);
         shopManager.addProduct(product4);
 
+        System.out.println(">>> 시나리오 2: 상품 조회\n");
+
+        // 전체 상품 출력
+        shopManager.printAllProducts();
+
+        // 카테고리 검색
+//        System.out.println("\n[검색: 전자기기]");
+//        Product[] electronics = shopManager.searchProductsByCategory("전자기기");
+//        for (int i = 0; i < electronics.length; i++) {
+//            Product p = electronics[i];
+//            System.out.println((i + 1) + ". " + p.getName() + " - " + p.getPrice() + "원");
+//        }
+
 //    >>> 시나리오 1: 초기 데이터 설정
 //
 //        [상품 등록] 노트북 - 1500000원
@@ -78,6 +91,5 @@ public class ShopApp {
 //    2. [P2] 마우스 - 30000원 (재고: 18개)
 //    3. [P3] Java책 - 35000원 (재고: 10개)
 //    4. [P4] 키보드 - 80000원 (재고: 14개)
-        shopManager.findProductById();
     }
 }

@@ -34,7 +34,6 @@ public class Product {
         return stock >= quantity;
     }
 
-
     public String getId() {
         return id;
     }
@@ -94,7 +93,5 @@ public class Product {
         setStock(stock);
         setCategory(category);
     }
-
-
 }
 

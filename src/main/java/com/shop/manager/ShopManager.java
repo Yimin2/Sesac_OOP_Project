@@ -19,10 +19,10 @@ public class ShopManager {
     }
 
     public void addProduct(Product product) {
-        if (products.length >= productCount) {
+        if (products.length <= productCount) {
             throw new IllegalArgumentException("상품 배열이 가득 찼습니다.");
         }
-        products[productCount] = product;
+        products[productCount++] = product;
     }
 
 
@@ -65,11 +65,9 @@ public class ShopManager {
     }
 
     public void printAllProducts() {
-        int i = 0;
-        for (Product p : products) {
-
-            System.out.println((i + 1) + ". [" + p.getId() + "] " + p.getName() + " - " + p.getPrice() + "원 (재고: " + p.getStock() + "개)");
-            i++;
+        for (int i = 0; i < productCount; i++) {
+            Product p = products[i];
+            System.out.println((i+1) + ". [" + p.getId() + "] " + p.getName() + " - " + p.getPrice() + "원 (재고: " + p.getStock() + "개)");
         }
     }
 }
